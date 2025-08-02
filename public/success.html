@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Success</title>
+    <style>
+      body {
+        background: #f6f9fc;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(50, 50, 93, 0.1);
+        padding: 2rem 3rem;
+        text-align: center;
+        max-width: 400px;
+      }
+      .checkmark {
+        font-size: 3rem;
+        color: #24b47e;
+        margin-bottom: 1rem;
+      }
+      .status {
+        font-size: 1.2rem;
+        color: #555;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="checkmark">✔️</div>
+      <h1>Payment Successful!</h1>
+      <div class="status" id="status">Checking your subscription status...</div>
+    </div>
+    <script>
+      // Fetch user status from /auth/user using JWT from localStorage
+      async function fetchStatus() {
+        try {
+          const res = await fetch('/auth/user');
+          if (res.ok) {
+            const user = await res.json();
+            document.getElementById('status').textContent =
+              `Subscription status: ${user.subscriptionStatus}`;
+          } else {
+            document.getElementById('status').textContent =
+              'Could not fetch user status.';
+          }
+        } catch {
+          document.getElementById('status').textContent =
+            'Could not fetch user status.';
+        }
+      }
+      fetchStatus();
+    </script>
+  </body>
+</html>

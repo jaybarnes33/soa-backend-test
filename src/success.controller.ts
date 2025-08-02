@@ -6,6 +6,6 @@ import { join } from 'path';
 export class SuccessController {
   @Get()
   getSuccessPage(@Res() res: Response) {
-    return res.sendFile(join(process.cwd(), 'src', 'success.html'));
+    return res.sendFile(join(process.cwd(), 'public', 'success.html'));
   }
 }
