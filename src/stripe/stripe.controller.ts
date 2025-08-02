@@ -30,7 +30,16 @@ export class StripeController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get('session')
-  @ApiResponse({ status: 200, description: 'Create Stripe checkout session', schema: { example: { id: 'cs_test_...', url: 'https://checkout.stripe.com/pay/cs_test_...' } } })
+  @ApiResponse({
+    status: 200,
+    description: 'Create Stripe checkout session',
+    schema: {
+      example: {
+        id: 'cs_test_...',
+        url: 'https://checkout.stripe.com/pay/cs_test_...',
+      },
+    },
+  })
   async createSession(@Req() req: any) {
     // userId from JWT payload
     const userId = req.user?.userId;

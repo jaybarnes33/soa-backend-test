@@ -12,7 +12,18 @@ export class SessionsController {
   @Get(':id/session-of-the-day')
   @UseGuards(JwtAuthGuard)
   @ApiParam({ name: 'id', type: String, description: 'User ID' })
-  @ApiResponse({ status: 200, description: 'Get session of the day', schema: { example: { dayOfWeek: 'Saturday', date: '2025-08-02', activity: 'Guided Meditation', completed: false } } })
+  @ApiResponse({
+    status: 200,
+    description: 'Get session of the day',
+    schema: {
+      example: {
+        dayOfWeek: 'Saturday',
+        date: '2025-08-02',
+        activity: 'Guided Meditation',
+        completed: false,
+      },
+    },
+  })
   getSession(@Param('id') id: string) {
     // Optionally, check req.user.userId === id
     return this.sessionsService.getSessionOfTheDay(Number(id));

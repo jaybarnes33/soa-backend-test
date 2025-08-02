@@ -3,6 +3,7 @@
 A full-featured NestJS backend for subscription, session, Stripe, and AI-powered reflection APIs.
 
 ## Features
+
 - JWT authentication
 - Stripe checkout and webhook integration
 - Session of the Day API
@@ -42,14 +43,18 @@ Swagger UI: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 ### Auth
 
 #### POST `/auth/login`
+
 **Request:**
+
 ```json
 {
   "username": "test",
   "password": "test"
 }
 ```
+
 **Response:**
+
 ```json
 {
   "access_token": "<JWT>"
@@ -57,7 +62,9 @@ Swagger UI: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 ```
 
 #### GET `/auth/user`
+
 **Response:**
+
 ```json
 {
   "id": 1,
@@ -70,10 +77,12 @@ Swagger UI: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 ### Sessions
 
 #### GET `/user/:id/session-of-the-day` (JWT required)
+
 **Headers:**
 `Authorization: Bearer <JWT>`
 
 **Response:**
+
 ```json
 {
   "dayOfWeek": "Saturday",
@@ -86,10 +95,12 @@ Swagger UI: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 ### Stripe
 
 #### GET `/checkout/session` (JWT required)
+
 **Headers:**
 `Authorization: Bearer <JWT>`
 
 **Response:**
+
 ```json
 {
   "id": "cs_test_...",
@@ -98,21 +109,26 @@ Swagger UI: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 ```
 
 #### POST `/checkout/webhook/stripe`
+
 **Stripe will POST events here.**
 
 ### Reflection (AI)
 
 #### POST `/user/:id/reflection` (JWT required)
+
 **Headers:**
 `Authorization: Bearer <JWT>`
 
 **Request:**
+
 ```json
 {
   "text": "I feel happy today"
 }
 ```
+
 **Response:**
+
 ```json
 {
   "emotion": "joy"
@@ -122,6 +138,7 @@ Swagger UI: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 ## Sample cURL Requests
 
 **Login:**
+
 ```sh
 curl -X POST http://localhost:3000/auth/login \
   -H "Content-Type: application/json" \
@@ -129,18 +146,21 @@ curl -X POST http://localhost:3000/auth/login \
 ```
 
 **Get Session of the Day:**
+
 ```sh
 curl -X GET http://localhost:3000/user/1/session-of-the-day \
   -H "Authorization: Bearer <JWT>"
 ```
 
 **Create Stripe Checkout Session:**
+
 ```sh
 curl -X GET http://localhost:3000/checkout/session \
   -H "Authorization: Bearer <JWT>"
 ```
 
 **AI Reflection:**
+
 ```sh
 curl -X POST http://localhost:3000/user/1/reflection \
   -H "Authorization: Bearer <JWT>" \
@@ -155,6 +175,7 @@ See `deployment.sh` for Google Cloud Run deployment. Ensure all required environ
 ---
 
 For more, see `/api-docs` or the source code.
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
@@ -244,12 +265,6 @@ Check out a few resources that may come in handy when working with NestJS:
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
