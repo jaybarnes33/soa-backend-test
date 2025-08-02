@@ -29,8 +29,12 @@ COPY package*.json ./
 # Install dependencies with legacy-peer-deps to avoid NestJS schedule conflict
 RUN npm install --legacy-peer-deps --no-audit --no-fund
 
+
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
+
+# Copy public directory for static assets
+COPY --from=builder /app/public ./public
 
 
 # Expose port
